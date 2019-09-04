@@ -123,7 +123,6 @@ function createArticle(obj) {
   const span = document.createElement("span");
   span.classList.add("expandButton");
   span.textContent = "Learn More";
-  console.log(article);
 
   article.appendChild(h2);
   article.appendChild(date);
