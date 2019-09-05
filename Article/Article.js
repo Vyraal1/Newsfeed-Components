@@ -3,7 +3,7 @@
 const data = [
   {
     title: 'Lambda School Students: "We\'re the best!"',
-    date: 'Nov 5th, 2018',
+    date: "Nov 5th, 2018",
     firstParagraph: `Lucas ipsum dolor sit amet ben twi'lek padmé darth darth darth moff hutt organa twi'lek. Ben amidala secura skywalker lando
         moff wicket tatooine luke.Solo wampa wampa calrissian yoda moff.Darth grievous darth gonk darth hutt.Darth baba skywalker
         watto fett jango maul han.Mon ewok sidious sidious lando kenobi grievous gamorrean solo.Yoda wedge utapau darth calamari.
@@ -23,8 +23,8 @@ const data = [
         moff calamari mon obi-wan. Solo grievous lando coruscant. Jinn darth palpatine obi-wan mon.`
   },
   {
-    title: 'Javascript and You, ES6',
-    date: 'May 7th, 2019',
+    title: "Javascript and You, ES6",
+    date: "May 7th, 2019",
     firstParagraph: `Alohamora wand elf parchment, Wingardium Leviosa hippogriff, house dementors betrayal. Holly, Snape centaur portkey ghost
         Hermione spell bezoar Scabbers. Peruvian-Night-Powder werewolf, Dobby pear-tickle half-moon-glasses, Knight-Bus. Padfoot
         snargaluff seeker: Hagrid broomstick mischief managed. Snitch Fluffy rock-cake, 9 ¾ dress robes I must not tell lies. Mudbloods
@@ -43,8 +43,8 @@ const data = [
         sing above the ground, Ginny Weasley bright red. Fanged frisbees, phoenix tears good clean match.`
   },
   {
-    title: 'React vs Angular vs Vue',
-    date: 'June 7th, 2019',
+    title: "React vs Angular vs Vue",
+    date: "June 7th, 2019",
     firstParagraph: `Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ivysaur Lorem ipsum dolor sit amet, consectetur adipiscing
         elit. Venusaur Lorem ipsum dolor sit amet, consectetur adipiscing elit. Charmander Lorem ipsum dolor sit amet, consectetur
         adipiscing elit. Charmeleon Lorem ipsum dolor sit amet, consectetur adipiscing elit. Charizard Lorem ipsum dolor sit amet,
@@ -71,8 +71,8 @@ const data = [
         Castform Lotad the power that's inside Burnt Berry Makuhita. Ghost Ariados Corphish Dusclops Golbat Gligar Zweilous.`
   },
   {
-    title: 'Professional Software Development in 2019',
-    date: 'Jan 1st, 2019',
+    title: "Professional Software Development in 2019",
+    date: "Jan 1st, 2019",
     firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
           hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
           Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
@@ -88,27 +88,73 @@ const data = [
   }
 ];
 
-/* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
+/* 
+  Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
   <div class="article">
     <h2>{title of the article}</h2>
     <p class="date">{date of the article}</p>
-
     {three separate paragraph elements}
-
     <span class='expandButton'></span>
   </div>
 
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
-
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
-
-  Step 3: return the entire component.
-
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
-
-  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
-
 */
+function createArticle(obj) {
+  const article = document.createElement("div");
+  article.classList.add("article");
+
+  const h2 = document.createElement("h2");
+  h2.textContent = obj.title;
+
+  const date = document.createElement("p");
+  date.textContent = obj.date;
+  date.classList.add("date");
+
+  const firstP = document.createElement("p");
+  firstP.textContent = obj.firstParagraph;
+  const secondP = document.createElement("p");
+  secondP.textContent = obj.secondParagraph;
+  const thirdP = document.createElement("p");
+  thirdP.textContent = obj.thirdParagraph;
+
+  const span = document.createElement("span");
+  span.classList.add("expandButton");
+  span.textContent = "Learn More";
+
+  article.appendChild(h2);
+  article.appendChild(date);
+  article.appendChild(firstP);
+  article.appendChild(secondP);
+  article.appendChild(thirdP);
+  article.appendChild(span);
+
+  /* Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div. */
+  span.addEventListener("click", function(e) {
+    article.classList.toggle("article-open");
+  });
+
+  /* Step 3: return the entire component. */
+  return article;
+}
+/* Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div. */
+let articles = document.querySelector(".articles");
+data.forEach(post => {
+  articles.appendChild(createArticle(post));
+});
+
+/* Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article. */
+let djKhaled = {
+  title: "Major Keys to Success",
+  date: new Date(),
+  firstParagraph:
+    "The other day the grass was brown, now it’s green because I ain’t give up. Never surrender. The key to success is to keep your head above the water, never give up. We don’t see them, we will never see them. In life you have to take the trash out, if you have trash in your life, take it out, throw it away, get rid of it, major key. Lion! Wraith talk. Put it this way, it took me twenty five years to get these plants, twenty five years of blood sweat and tears, and I’m never giving up, I’m just getting started.",
+  secondParagraph:
+    "Let’s see what Chef Dee got that they don’t want us to eat. Give thanks to the most high. Find peace, life is like a water fall, you’ve gotta flow. I told you all this before, when you have a swimming pool, do not use chlorine, use salt water, the healing, salt water is the healing. Learning is cool, but knowing is better, and I know the key to success. To be successful you’ve got to work hard, to make history, simple, you’ve got to make it. Let’s see what Chef Dee got that they don’t want us to eat. Learning is cool, but knowing is better, and I know the key to success.",
+  thirdParagraph:
+    "Watch your back, but more importantly when you get out the shower, dry your back, it’s a cold world out there. They key is to have every key, the key to open every door. It’s important to use cocoa butter. It’s the key to more success, why not live smooth? Why live rough? The weather is amazing, walk with me through the pathway of more success. Take this journey with me, Lion! You see the hedges, how I got it shaped up? It’s important to shape up your hedges, it’s like getting a haircut, stay fresh."
+};
+
+articles.appendChild(createArticle(djKhaled));
